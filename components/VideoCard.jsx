@@ -8,14 +8,10 @@ const VideoCard = ({
     title,
     thumbnail,
     video,
-    users: { avatar, username },
+    creator: { avatar, username },
   },
 }) => {
   const [play, setPlay] = useState(false);
-
-  useEffect(() => {
-    console.log(avatar);
-  }, []);
 
   return (
     <View className="flex flex-col items-center px-4 mb-14">
