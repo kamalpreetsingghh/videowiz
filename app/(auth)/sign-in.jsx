@@ -76,7 +76,7 @@ const SignIn = () => {
           />
 
           <View className="flex justify-center pt-5 flex-row gap-2">
-            <Text className="text-lg text-gray-100 font-pregular">
+            <Text className="text-lg text-gray-light dark:text-gray-dark font-pregular">
               Don't have an account?
             </Text>
             <Link
