@@ -1,6 +1,5 @@
 import { Redirect, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
 import { Image, ScrollView, Text, View } from "react-native";
 import { images } from "../constants";
 import { CustomButton, Loader } from "../components";
@@ -12,7 +11,7 @@ export default function App() {
   if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
 
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       {isLoading ? (
         <Loader />
       ) : (
@@ -50,8 +49,6 @@ export default function App() {
           </View>
         </ScrollView>
       )}
-
-      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 }

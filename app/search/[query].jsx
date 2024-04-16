@@ -22,10 +22,12 @@ const Search = () => {
         renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
           <View className="flex my-6 px-4">
-            <Text className="font-pmedium text-sm text-gray-100">
+            <Text className="font-pmedium text-sm text-surface-light dark:text-surface-dark">
               Search Results
             </Text>
-            <Text className="text-2xl font-psemibold text-white">{query}</Text>
+            <Text className="text-2xl font-psemibold text-surface-light dark:text-surface-dark">
+              {query}
+            </Text>
             <View className="mt-6 mb-8">
               <SearchField initialQuery={query} />
             </View>

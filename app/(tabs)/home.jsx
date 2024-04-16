@@ -27,7 +27,7 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       {isLoading ? (
         <Loader />
       ) : (
@@ -39,10 +39,10 @@ const Home = () => {
             <View className="flex my-6 px-4 space-y-6">
               <View className="flex justify-between items-start flex-row mb-6">
                 <View>
-                  <Text className="font-pmedium text-sm text-gray-100">
+                  <Text className="font-pmedium text-sm text-surface-light dark:text-surface-dark">
                     Welcome Back
                   </Text>
-                  <Text className="text-2xl font-psemibold text-white">
+                  <Text className="text-2xl font-psemibold text-surface-light dark:text-surface-dark">
                     {user?.username}
                   </Text>
                 </View>
@@ -59,7 +59,7 @@ const Home = () => {
               <SearchField />
 
               <View className="w-full flex-1 pt-5 pb-8">
-                <Text className="text-lg font-pregular text-gray-100 mb-3">
+                <Text className="text-lg font-pregular text-surface-light dark:text-surface-dark mb-3">
                   Latest Videos
                 </Text>
                 <Trending posts={latestPosts ?? []} />

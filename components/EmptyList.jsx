@@ -1,6 +1,7 @@
 import { View, Text, Image } from "react-native";
 import CustomButton from "./CustomButton";
 import { images } from "../constants";
+import { router } from "expo-router";
 
 const EmptyList = ({ title, subtitle }) => {
   return (
@@ -11,8 +12,10 @@ const EmptyList = ({ title, subtitle }) => {
         className="w-[270px] h-[216px]"
       />
 
-      <Text className="text-sm font-pmedium text-gray-100">{title}</Text>
-      <Text className="text-xl text-center font-psemibold text-white mt-2">
+      <Text className="text-sm font-pmedium text-surface-light dark:text-surface-dark">
+        {title}
+      </Text>
+      <Text className="text-xl text-center font-psemibold text-surface-light dark:text-surface-dark mt-2">
         {subtitle}
       </Text>
 

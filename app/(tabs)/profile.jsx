@@ -20,7 +20,7 @@ const Profile = () => {
   };
 
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       {isLoading ? (
         <Loader />
       ) : (
