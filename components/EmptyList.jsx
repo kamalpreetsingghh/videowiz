@@ -1,5 +1,4 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
 import CustomButton from "./CustomButton";
 import { images } from "../constants";
 

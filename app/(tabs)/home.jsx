@@ -1,22 +1,11 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  Alert,
-  FlatList,
-  Image,
-  RefreshControl,
-  Text,
-  View,
-} from "react-native";
-
-import { images } from "../../constants";
-import SearchField from "../../components/SearchField";
-import Trending from "../../components/Trending";
-import EmptyList from "../../components/EmptyList";
+import { FlatList, Image, RefreshControl, Text, View } from "react-native";
+import { EmptyList, SearchField, Trending, VideoCard } from "../../components";
 import { useState } from "react";
 import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
-import useAppwrite from "../../hooks/useAppwrite";
-import VideoCard from "../../components/VideoCard";
 import { useGlobalContext } from "../../context/GlobalProvider";
+import { images } from "../../constants";
+import useAppwrite from "../../hooks/useAppwrite";
 
 const Home = () => {
   const { user } = useGlobalContext();

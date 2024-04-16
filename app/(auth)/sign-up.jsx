@@ -3,8 +3,7 @@ import { View, Text, ScrollView, Image, Alert } from "react-native";
 import { useState } from "react";
 import { Link, router } from "expo-router";
 import { images } from "../../constants";
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
+import { CustomButton, FormField } from "../../components";
 import { createUser } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 

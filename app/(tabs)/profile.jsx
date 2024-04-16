@@ -1,13 +1,11 @@
-import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
-import { useGlobalContext } from "../../context/GlobalProvider";
-import useAppwrite from "../../hooks/useAppwrite";
+import { View, FlatList, Image, TouchableOpacity } from "react-native";
 import { getUserPosts, signOut } from "../../lib/appwrite";
 import { SafeAreaView } from "react-native-safe-area-context";
-import VideoCard from "../../components/VideoCard";
-import EmptyList from "../../components/EmptyList";
-import InfoContainer from "../../components/InfoContainer";
-import { icons } from "../../constants";
+import { EmptyList, InfoContainer, VideoCard } from "../../components";
 import { router } from "expo-router";
+import { useGlobalContext } from "../../context/GlobalProvider";
+import { icons } from "../../constants";
+import useAppwrite from "../../hooks/useAppwrite";
 
 const Profile = () => {
   const { user, setUser, setIsLoggedIn, isLoggedIn } = useGlobalContext();

@@ -6,17 +6,15 @@ import {
   Image,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
+import { CustomButton, FormField } from "../../components";
 import { ResizeMode, Video } from "expo-av";
-import * as DocumentPicker from "expo-document-picker";
-import * as ImagePicker from "expo-image-picker";
-import { icons } from "../../constants";
-import { useGlobalContext } from "../../context/GlobalProvider";
-import { createVideoPost } from "../../lib/appwrite";
 import { router } from "expo-router";
+import * as ImagePicker from "expo-image-picker";
+import { createVideoPost } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
+import { icons } from "../../constants";
 
 const Create = () => {
   const { user } = useGlobalContext();

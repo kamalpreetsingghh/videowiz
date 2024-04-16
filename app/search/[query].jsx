@@ -3,9 +3,7 @@ import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getSearchPosts } from "../../lib/appwrite";
 import useAppwrite from "../../hooks/useAppwrite";
-import SearchField from "../../components/SearchField";
-import EmptyList from "../../components/EmptyList";
-import VideoCard from "../../components/VideoCard";
+import { SearchField, EmptyList, VideoCard } from "../../components";
 import { useEffect } from "react";
 
 const Search = () => {
