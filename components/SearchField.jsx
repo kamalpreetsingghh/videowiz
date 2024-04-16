@@ -17,7 +17,7 @@ const SearchField = ({ initialQuery }) => {
         className="text-base mt-0.5 text-surface-light dark:text-surface-dark flex-1 font-pregular"
         value={query}
         placeholder="Search a video topic"
-        placeholderTextColor="#CDCDE0"
+        placeholderTextColor="#7B7B8B"
         onChangeText={(e) => setQuery(e)}
       />
 
