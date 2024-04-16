@@ -8,6 +8,7 @@ const FormField = ({
   value,
   placeholder,
   handleChangeText,
+  isPassword = false,
   otherStyles,
   ...props
 }) => {
@@ -15,25 +16,30 @@ const FormField = ({
 
   return (
     <View className={`space-y-2 ${otherStyles}`}>
-      <Text className="text-base text-surface-light dark:text-surface-dark font-pmedium">
-        {title}
-      </Text>
+      {title && (
+        <Text className="text-base text-surface-light dark:text-surface-dark font-pregular">
+          {title}
+        </Text>
+      )}
 
-      <View className="w-full h-16 px-4 bg-primary-light dark:bg-primary-dark rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row items-center">
+      <View
+        className="w-full h-16 px-4 bg-container-light dark:bg-container-dark rounded-full 
+       flex flex-row items-center"
+      >
         <TextInput
-          className="flex-1 text-surface-light dark:text-surface-dark font-psemibold text-base"
+          className="flex-1 text-surface-light dark:text-surface-dark font-pmedium text-base"
           value={value}
           placeholder={placeholder}
           placeholderTextColor="#7B7B8B"
           onChangeText={handleChangeText}
-          secureTextEntry={title === "Password" && !showPassword}
+          secureTextEntry={isPassword && !showPassword}
           {...props}
         />
 
-        {title === "Password" && (
+        {isPassword && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Image
-              source={!showPassword ? icons.eye : icons.eyeHide}
+              source={showPassword ? icons.eye : icons.eyeHide}
               className="w-6 h-6"
               resizeMode="contain"
             />

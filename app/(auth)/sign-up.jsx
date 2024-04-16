@@ -2,7 +2,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Image, Alert } from "react-native";
 import { useState } from "react";
 import { Link, router } from "expo-router";
-import { images } from "../../constants";
 import { CustomButton, FormField } from "../../components";
 import { createUser } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
@@ -42,18 +41,16 @@ const SignUp = () => {
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       <ScrollView>
         <View className="w-full flex justify-center min-h-[80vh] px-4 my-6">
-          <Image
-            source={images.logo}
-            resizeMode="contain"
-            className="w-[230px] h-[100px]"
-          />
+          <Text className="text-4xl font-semibold text-surface-light dark:text-surface-dark mt-10 font-psemibold">
+            Lets get you started
+          </Text>
 
-          <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
-            Sign up to VidWiz
+          <Text className="text-2xl font-semibold text-surface-light dark:text-surface-dark mt-6 font-plight">
+            Hi there, Embark on a journey of boundless creativity with Al.
           </Text>
 
           <FormField
-            title="Username"
+            placeholder="Username"
             value={form.username}
             handleChangeText={(e) => setForm({ ...form, username: e })}
             otherStyles="mt-7"
@@ -61,7 +58,7 @@ const SignUp = () => {
           />
 
           <FormField
-            title="Email"
+            placeholder="Email"
             value={form.email}
             handleChangeText={(e) => setForm({ ...form, email: e })}
             otherStyles="mt-7"
@@ -69,14 +66,15 @@ const SignUp = () => {
           />
 
           <FormField
-            title="Password"
+            placeholder="Password"
             value={form.password}
             handleChangeText={(e) => setForm({ ...form, password: e })}
+            isPassword={true}
             otherStyles="mt-7"
           />
 
           <CustomButton
-            title="Sign Up"
+            title="Create Account"
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
@@ -90,7 +88,7 @@ const SignUp = () => {
               href="/sign-in"
               className="text-lg font-psemibold text-secondary"
             >
-              Signin
+              Sign In
             </Link>
           </View>
         </View>

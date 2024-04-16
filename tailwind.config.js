@@ -23,6 +23,10 @@ module.exports = {
           light: "#000000",
           dark: "#ffffff",
         },
+        container: {
+          light: "#efefef",
+          dark: "#141414",
+        },
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],

@@ -119,7 +119,7 @@ const Create = () => {
                 resizeMode={ResizeMode.COVER}
               />
             ) : (
-              <View className="w-full h-40 px-4 bg-primary-light dark:bg-primary-dark rounded-2xl border border-black-200 flex justify-center items-center">
+              <View className="w-full h-40 px-4 bg-container-light dark:bg-container-dark rounded-2xl flex justify-center items-center">
                 <View className="w-14 h-14 border border-dashed border-secondary-100 flex justify-center items-center">
                   <Image
                     source={icons.upload}
@@ -146,7 +146,7 @@ const Create = () => {
                 className="w-full h-64 rounded-2xl"
               />
             ) : (
-              <View className="w-full h-16 px-4 bg-primary-light dark:bg-primary-dark rounded-2xl border-2 border-black-200 flex justify-center items-center flex-row space-x-2">
+              <View className="w-full h-16 px-4 bg-container-light dark:bg-container-dark rounded-2xl flex justify-center items-center flex-row space-x-2">
                 <Image
                   source={icons.upload}
                   resizeMode="contain"
