@@ -5,6 +5,7 @@ import InfoContainer from "./InfoContainer";
 import Trending from "./Trending";
 import SearchField from "./SearchField";
 import EmptyList from "./EmptyList";
+import Loader from "./Loader";
 
 export {
   VideoCard,
@@ -14,4 +15,5 @@ export {
   Trending,
   SearchField,
   EmptyList,
+  Loader,
 };

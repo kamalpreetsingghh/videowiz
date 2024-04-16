@@ -8,11 +8,7 @@ import { useEffect } from "react";
 
 const Search = () => {
   const { query } = useLocalSearchParams();
-  const {
-    data: posts,
-    isLoading,
-    refetch,
-  } = useAppwrite(() => getSearchPosts(query));
+  const { data: posts, refetch } = useAppwrite(() => getSearchPosts(query));
 
   useEffect(() => {
     refetch();
