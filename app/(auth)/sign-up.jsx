@@ -10,7 +10,7 @@ const SignUp = () => {
   const { setUser, setIsLoggedIn } = useGlobalContext();
 
   const [form, setForm] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -18,14 +18,14 @@ const SignUp = () => {
   const [isSubmitting, setSubmitting] = useState(false);
 
   const submit = async () => {
-    if (form.username === "" || form.email === "" || form.password === "") {
+    if (form.name === "" || form.email === "" || form.password === "") {
       Alert.alert("Error", "Please fill in all fields");
     }
 
     setSubmitting(true);
 
     try {
-      const result = await createUser(form.username, form.email, form.password);
+      const result = await createUser(form.name, form.email, form.password);
       setUser(result);
       setIsLoggedIn(true);
 
@@ -50,9 +50,9 @@ const SignUp = () => {
           </Text>
 
           <FormField
-            placeholder="Username"
+            placeholder="Name"
             value={form.username}
-            handleChangeText={(e) => setForm({ ...form, username: e })}
+            handleChangeText={(e) => setForm({ ...form, name: e })}
             otherStyles="mt-7"
             keyboardType="email-address"
           />
