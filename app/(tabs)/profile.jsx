@@ -50,7 +50,7 @@ const Profile = () => {
               </View>
 
               <InfoContainer
-                title={user?.username}
+                title={user?.name}
                 containerStyles="mt-5"
                 titleStyles="text-lg"
               />

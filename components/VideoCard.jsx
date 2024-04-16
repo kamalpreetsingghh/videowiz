@@ -8,7 +8,7 @@ const VideoCard = ({
     title,
     thumbnail,
     video,
-    creator: { avatar, username },
+    creator: { avatar, name },
   },
 }) => {
   const [play, setPlay] = useState(false);
@@ -36,7 +36,7 @@ const VideoCard = ({
               className="text-xs font-pregular text-surface-light dark:text-surface-dark"
               numberOfLines={1}
             >
-              {username}
+              {name}
             </Text>
           </View>
         </View>
