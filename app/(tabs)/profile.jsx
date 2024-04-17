@@ -63,7 +63,7 @@ const Profile = () => {
                   containerStyles="mr-10"
                 />
                 <InfoContainer
-                  title="1.2k"
+                  title={`${(Math.random() * 100).toFixed(1)}k`}
                   subtitle="Followers"
                   titleStyles="text-xl"
                 />
