@@ -7,25 +7,54 @@ import { createUser } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignUp = () => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const { setUser, setIsLoggedIn } = useGlobalContext();
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const onNameChange = (newValue) => {
+    setName(newValue);
+    if (newValue === "") {
+      setNameError("Name is required");
+    } else {
+      setNameError("");
+    }
+  };
+
+  const onEmailChange = (newValue) => {
+    setEmail(newValue);
+    if (newValue === "") {
+      setEmailError("Email is required");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const onPasswordChange = (newValue) => {
+    setPassword(newValue);
+    if (newValue === "") {
+      setPasswordError("Password is required");
+    } else {
+      setPasswordError("");
+    }
+  };
 
   const [isSubmitting, setSubmitting] = useState(false);
 
   const submit = async () => {
-    if (form.name === "" || form.email === "" || form.password === "") {
-      Alert.alert("Error", "Please fill in all fields");
+    if (!isValidForm()) {
+      return;
     }
 
     setSubmitting(true);
 
     try {
-      const result = await createUser(form.name, form.email, form.password);
+      const result = await createUser(name, email, password);
       setUser(result);
       setIsLoggedIn(true);
 
@@ -35,6 +64,32 @@ const SignUp = () => {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const isValidForm = () => {
+    let isError = false;
+
+    if (name === "") {
+      setNameError("Name is required");
+      isError = true;
+    }
+
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid Email Address");
+      isError = true;
+    }
+
+    if (email === "") {
+      setEmailError("Email is required");
+      isError = true;
+    }
+
+    if (password === "") {
+      setPasswordError("Password is required");
+      isError = true;
+    }
+
+    return !isError;
   };
 
   return (
@@ -51,26 +106,29 @@ const SignUp = () => {
 
           <FormField
             placeholder="Name"
-            value={form.username}
-            handleChangeText={(e) => setForm({ ...form, name: e })}
+            value={name}
+            handleChangeText={(e) => onNameChange(e)}
             otherStyles="mt-7"
             keyboardType="email-address"
+            errorMessage={nameError}
           />
 
           <FormField
             placeholder="Email"
-            value={form.email}
-            handleChangeText={(e) => setForm({ ...form, email: e })}
+            value={email}
+            handleChangeText={(e) => onEmailChange(e)}
             otherStyles="mt-7"
             keyboardType="email-address"
+            errorMessage={emailError}
           />
 
           <FormField
             placeholder="Password"
-            value={form.password}
-            handleChangeText={(e) => setForm({ ...form, password: e })}
+            value={password}
+            handleChangeText={(e) => onPasswordChange(e)}
             isPassword={true}
             otherStyles="mt-7"
+            errorMessage={passwordError}
           />
 
           <CustomButton

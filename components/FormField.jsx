@@ -9,6 +9,7 @@ const FormField = ({
   placeholder,
   handleChangeText,
   isPassword = false,
+  errorMessage = "",
   otherStyles,
   ...props
 }) => {
@@ -46,6 +47,9 @@ const FormField = ({
           </TouchableOpacity>
         )}
       </View>
+      {errorMessage && (
+        <Text className="text-red-600 pl-4">{errorMessage}</Text>
+      )}
     </View>
   );
 };

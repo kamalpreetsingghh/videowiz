@@ -1,40 +1,82 @@
 import { useState } from "react";
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, ScrollView, Alert, Image } from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
 import { CustomButton, FormField } from "../../components";
 import { getCurrentUser, signIn } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignIn = () => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const { setUser, setIsLoggedIn } = useGlobalContext();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const [isSubmitting, setSubmitting] = useState(false);
 
+  const onEmailChange = (newValue) => {
+    setEmail(newValue);
+    if (newValue === "") {
+      setEmailError("Email is required");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const onPasswordChange = (newValue) => {
+    setPassword(newValue);
+    if (newValue === "") {
+      setPasswordError("Password is required");
+    } else {
+      setPasswordError("");
+    }
+  };
+
   const submit = async () => {
-    if (form.email === "" || form.password === "") {
-      Alert.alert("Error", "Please fill in all fields");
+    if (!isValidForm()) {
+      return;
     }
 
     setSubmitting(true);
 
     try {
-      await signIn(form.email, form.password);
+      await signIn(email, password);
       const result = await getCurrentUser();
       setUser(result);
       setIsLoggedIn(true);
 
       router.replace("/home");
     } catch (error) {
-      Alert.alert("Error", error.message);
+      console.log(error.message);
+      setPasswordError("Incorrect Email or Password");
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const isValidForm = () => {
+    let isError = false;
+
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid Email Address");
+      isError = true;
+    }
+
+    if (email === "") {
+      setEmailError("Email is required");
+      isError = true;
+    }
+
+    if (password === "") {
+      setPasswordError("Password is required");
+      isError = true;
+    }
+
+    return !isError;
   };
 
   return (
@@ -52,18 +94,20 @@ const SignIn = () => {
 
           <FormField
             placeholder="Email"
-            value={form.email}
-            handleChangeText={(e) => setForm({ ...form, email: e })}
+            value={email}
+            handleChangeText={(e) => onEmailChange(e)}
             otherStyles="mt-7"
             keyboardType="email-address"
+            errorMessage={emailError}
           />
 
           <FormField
             placeholder="Password"
-            value={form.password}
-            handleChangeText={(e) => setForm({ ...form, password: e })}
+            value={password}
+            handleChangeText={(e) => onPasswordChange(e)}
             isPassword={true}
             otherStyles="mt-7"
+            errorMessage={passwordError}
           />
 
           <CustomButton
