@@ -23,7 +23,7 @@ const FormField = ({
       )}
 
       <View
-        className="w-full h-16 px-4 bg-container-light dark:bg-container-dark rounded-full 
+        className="w-full h-14 px-4 bg-container-light dark:bg-container-dark rounded-full 
        flex flex-row items-center"
       >
         <TextInput

@@ -6,6 +6,9 @@ import Trending from "./Trending";
 import SearchField from "./SearchField";
 import EmptyList from "./EmptyList";
 import Loader from "./Loader";
+import CreatePost from "./CreatePost";
+import UserProfile from "./UserProfile";
+import TabIcon from "./TabIcon";
 
 export {
   VideoCard,
@@ -16,4 +19,7 @@ export {
   SearchField,
   EmptyList,
   Loader,
+  CreatePost,
+  UserProfile,
+  TabIcon,
 };
