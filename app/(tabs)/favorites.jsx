@@ -1,16 +1,16 @@
-import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import { Redirect } from "expo-router";
+import FavoriteVideos from "../../components/FavoriteVideos";
 
 const Favorites = () => {
-  const { isLoading, isLoggedIn } = useGlobalContext();
+  const { isLoggedIn, user } = useGlobalContext();
 
-  if (!isLoading && !isLoggedIn) return <Redirect href="/onboarding" />;
+  if (!isLoggedIn) return <Redirect href="/onboarding" />;
 
   return (
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
-      <Text>Favorites</Text>
+      <FavoriteVideos userId={user.$id} />
     </SafeAreaView>
   );
 };
