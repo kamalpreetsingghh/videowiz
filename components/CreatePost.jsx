@@ -59,10 +59,12 @@ const CreatePost = ({ user }) => {
     if (!result.canceled) {
       if (selectType === "image") {
         setThumbnail(result.assets[0]);
+        setThumbnailError("");
       }
 
       if (selectType === "video") {
         setVideo(result.assets[0]);
+        setVideoError("");
       }
     }
   };
