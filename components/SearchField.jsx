@@ -17,7 +17,7 @@ const SearchField = ({ initialQuery }) => {
         className="text-base mt-0.5 text-surface-light dark:text-surface-dark flex-1 font-pregular"
         value={query}
         placeholder="Search a video topic"
-        placeholderTextColor="#7B7B8B"
+        placeholderTextColor="#6b7280"
         onChangeText={(e) => setQuery(e)}
       />
 
@@ -33,7 +33,12 @@ const SearchField = ({ initialQuery }) => {
           else router.push(`/search/${query}`);
         }}
       >
-        <Image source={icons.search} className="w-5 h-5" resizeMode="contain" />
+        <Image
+          source={icons.search}
+          className="w-5 h-5"
+          tintColor="#6b7280"
+          resizeMode="contain"
+        />
       </TouchableOpacity>
     </View>
   );

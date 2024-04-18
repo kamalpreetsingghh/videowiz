@@ -16,12 +16,33 @@ import { createVideoPost } from "../lib/appwrite";
 import { router } from "expo-router";
 
 const CreatePost = ({ user }) => {
-  const [form, setForm] = useState({
-    title: "",
-    video: null,
-    thumbnail: null,
-    prompt: "",
-  });
+  const [title, setTitle] = useState("");
+  const [prompt, setPrompt] = useState("");
+  const [thumbnail, setThumbnail] = useState(null);
+  const [video, setVideo] = useState(null);
+
+  const [titleError, setTitleError] = useState("");
+  const [promptError, setPromptError] = useState("");
+  const [thumbnailError, setThumbnailError] = useState("");
+  const [videoError, setVideoError] = useState("");
+
+  const onTitleChange = (newValue) => {
+    setTitle(newValue);
+    if (newValue === "") {
+      setTitleError("Title is required");
+    } else {
+      setTitleError("");
+    }
+  };
+
+  const onPromptChange = (newValue) => {
+    setPrompt(newValue);
+    if (newValue === "") {
+      setPromptError("Prompt is required");
+    } else {
+      setPromptError("");
+    }
+  };
 
   const [uploading, setUploading] = useState(false);
 
@@ -37,53 +58,62 @@ const CreatePost = ({ user }) => {
 
     if (!result.canceled) {
       if (selectType === "image") {
-        setForm({
-          ...form,
-          thumbnail: result.assets[0],
-        });
+        setThumbnail(result.assets[0]);
       }
 
       if (selectType === "video") {
-        setForm({
-          ...form,
-          video: result.assets[0],
-        });
+        setVideo(result.assets[0]);
       }
     }
   };
 
   const submit = async () => {
-    if (
-      (form.prompt === "") |
-      (form.title === "") |
-      !form.thumbnail |
-      !form.video
-    ) {
-      return Alert.alert("Please provide all fields");
+    if (!isValidForm()) {
+      return;
     }
 
     setUploading(true);
 
     try {
-      await createVideoPost({
-        ...form,
-        userId: user.$id,
-      });
+      await createVideoPost(title, prompt, video, thumbnail, user.$id);
 
       Alert.alert("Success", "Post uploaded successfully");
       router.push("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setForm({
-        title: "",
-        video: null,
-        thumbnail: null,
-        prompt: "",
-      });
-
+      setTitle("");
+      setPrompt("");
+      setVideo(null);
+      setThumbnail(null);
       setUploading(false);
     }
+  };
+
+  const isValidForm = () => {
+    let isError = false;
+
+    if (title === "") {
+      setTitleError("Title is required");
+      isError = true;
+    }
+
+    if (prompt === "") {
+      setPromptError("Prompt is required");
+      isError = true;
+    }
+
+    if (!video) {
+      setVideoError("Video is required");
+      isError = true;
+    }
+
+    if (!thumbnail) {
+      setThumbnailError("Thumbnail is required");
+      isError = true;
+    }
+
+    return !isError;
   };
 
   return (
@@ -93,76 +123,72 @@ const CreatePost = ({ user }) => {
       </Text>
 
       <FormField
-        title="Video Title"
-        value={form.title}
+        value={title}
         placeholder="Video Title"
-        handleChangeText={(e) => {
-          setForm({ ...form, title: e });
-        }}
-        otherStyles="mt-10"
+        handleChangeText={(e) => onTitleChange(e)}
+        otherStyles="mt-6"
+        errorMessage={titleError}
       />
 
       <View className="mt-7 space-y-2">
-        <Text className="text-base text-surface-light dark:text-surface-dark font-pmedium">
-          Upload Video
-        </Text>
-
         <TouchableOpacity onPress={() => openPicker("video")}>
-          {form.video ? (
+          {video ? (
             <Video
-              source={{ uri: form.video.uri }}
-              className="w-full h-64 rounded-2xl"
+              source={{ uri: video.uri }}
+              className="w-full h-40 rounded-2xl"
               resizeMode={ResizeMode.COVER}
             />
           ) : (
             <View className="w-full h-40 px-4 bg-container-light dark:bg-container-dark rounded-2xl flex justify-center items-center">
-              <View className="w-14 h-14 border border-dashed border-secondary-100 flex justify-center items-center">
-                <Image
-                  source={icons.upload}
-                  resizeMode="contain"
-                  alt="upload"
-                  className="w-1/2 h-1/2"
-                />
-              </View>
-            </View>
-          )}
-        </TouchableOpacity>
-      </View>
-
-      <View className="mt-7 space-y-2">
-        <Text className="text-base text-surface-light dark:text-surface-dark font-pmedium">
-          Thumbnail Image
-        </Text>
-
-        <TouchableOpacity onPress={() => openPicker("image")}>
-          {form.thumbnail ? (
-            <Image
-              source={{ uri: form.thumbnail.uri }}
-              resizeMode="cover"
-              className="w-full h-64 rounded-2xl"
-            />
-          ) : (
-            <View className="w-full h-16 px-4 bg-container-light dark:bg-container-dark rounded-2xl flex justify-center items-center flex-row space-x-2">
               <Image
-                source={icons.upload}
+                source={icons.home}
                 resizeMode="contain"
                 alt="upload"
-                className="w-5 h-5"
+                className="w-10 h-10"
+                tintColor="#FF9D00"
               />
-              <Text className="text-sm text-surface-light dark:text-surface-dark font-pmedium">
-                Choose a file
+              <Text className="text-sm mt-4 text-gray-500 font-pmedium">
+                Select a video
               </Text>
             </View>
           )}
         </TouchableOpacity>
+        {videoError && <Text className="text-red-600 pl-4">{videoError}</Text>}
+      </View>
+
+      <View className="mt-7 space-y-2">
+        <TouchableOpacity onPress={() => openPicker("image")}>
+          {thumbnail ? (
+            <Image
+              source={{ uri: thumbnail.uri }}
+              resizeMode="cover"
+              className="w-full h-40 rounded-2xl"
+            />
+          ) : (
+            <View className="w-full h-40 px-4 bg-container-light dark:bg-container-dark rounded-2xl flex justify-center items-center">
+              <Image
+                source={icons.upload}
+                resizeMode="contain"
+                alt="upload"
+                className="w-10 h-10"
+              />
+              <Text className="text-sm mt-4 text-gray-500 font-pmedium">
+                Select a thumbnail
+              </Text>
+            </View>
+          )}
+        </TouchableOpacity>
+        {thumbnailError && (
+          <Text className="text-red-600 pl-4">{thumbnailError}</Text>
+        )}
       </View>
 
       <FormField
-        title="AI Prompt"
-        value={form.prompt}
+        value={prompt}
         placeholder="The AI prompt of your video...."
-        handleChangeText={(e) => setForm({ ...form, prompt: e })}
+        handleChangeText={(e) => onPromptChange(e)}
         otherStyles="mt-7"
+        errorMessage={promptError}
       />
 
       <CustomButton

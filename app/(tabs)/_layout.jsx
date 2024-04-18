@@ -14,10 +14,10 @@ const TabsLayout = () => {
         tabBarInactiveTintColor: isDarkMode ? "#bfbfbf" : "#8f8f8f",
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: isDarkMode ? "#141414" : "#efefef",
-          borderTopWidth: 1,
-          borderTopColor: isDarkMode ? "#1e1e1e" : "#d7d7d7",
-          height: 90,
+          backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+          borderTopWidth: 0.5,
+          borderTopColor: isDarkMode ? "#1e1e1e" : "#e7e7e7",
+          height: 76,
         },
       }}
     >
@@ -42,7 +42,7 @@ const TabsLayout = () => {
           title: "Favorites",
           tabBarIcon: ({ color, focused }) => (
             <TabIcon
-              icon={icons.bookmark}
+              icon={icons.favorite}
               color={color}
               name="Favorites"
               focused={focused}

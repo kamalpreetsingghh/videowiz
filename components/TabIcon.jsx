@@ -1,6 +1,6 @@
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 
-const TabIcon = ({ icon, color, name, focused }) => {
+const TabIcon = ({ icon, color }) => {
   return (
     <View className="flex items-center justify-center gap-2">
       <Image
@@ -9,12 +9,6 @@ const TabIcon = ({ icon, color, name, focused }) => {
         tintColor={color}
         className="w-6 h-6"
       />
-      <Text
-        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
-        style={{ color: color }}
-      >
-        {name}
-      </Text>
     </View>
   );
 };
