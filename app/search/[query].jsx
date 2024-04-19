@@ -28,14 +28,14 @@ const Search = () => {
           keyExtractor={(item) => item.$id}
           renderItem={({ item }) => <VideoCard video={item} />}
           ListHeaderComponent={() => (
-            <View className="flex my-6 px-4">
+            <View className="flex mt-6 mb-4 px-4">
               <Text className="font-pmedium text-sm text-surface-light dark:text-surface-dark">
                 Search Results
               </Text>
               <Text className="text-2xl font-psemibold text-surface-light dark:text-surface-dark">
                 {query}
               </Text>
-              <View className="mt-6 mb-8">
+              <View className="my-4">
                 <SearchField initialQuery={query} />
               </View>
             </View>

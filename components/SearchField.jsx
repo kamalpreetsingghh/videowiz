@@ -25,8 +25,8 @@ const SearchField = ({ initialQuery }) => {
         onPress={() => {
           if (query === "")
             return Alert.alert(
-              "Missing Query",
-              "Please input something to search results across database"
+              "Missing Input",
+              "Provide the video name to search"
             );
 
           if (pathname.startsWith("/search")) router.setParams({ query });
