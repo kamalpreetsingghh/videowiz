@@ -12,12 +12,13 @@ const Onboarding = () => {
           <View className="justify-start w-full ">
             <TouchableOpacity
               onPress={() => router.navigate("/")}
-              className="w-[35px] h-[35px] items-center justify-center rounded-full bg-orange-200 dark:bg-orange-900/50"
+              className="w-[35px] h-[35px] items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/50"
             >
               <Image
                 source={icons.leftArrow}
                 className="w-[25px] h-[25px] row-span-full"
                 resizeMode="contain"
+                tintColor="#FFA001"
               />
             </TouchableOpacity>
           </View>

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, ScrollView, Alert } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
 import { CustomButton, FormField } from "../../components";
 import { getCurrentUser, signIn } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
+import { icons } from "../../constants";
 
 const SignIn = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -83,6 +84,25 @@ const SignIn = () => {
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       <ScrollView>
         <View className="w-full flex justify-center min-h-[80vh] px-4 my-6">
+          <View className="justify-start w-full absolute top-0 left-0 mx-4">
+            <TouchableOpacity
+              onPress={() => {
+                if (router.canGoBack()) {
+                  router.back();
+                } else {
+                  router.navigate("/home");
+                }
+              }}
+              className="w-[35px] h-[35px] items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/50"
+            >
+              <Image
+                source={icons.leftArrow}
+                className="w-[25px] h-[25px] row-span-full"
+                resizeMode="contain"
+                tintColor="#FFA001"
+              />
+            </TouchableOpacity>
+          </View>
           <Text className="text-4xl font-semibold text-surface-light dark:text-surface-dark mt-10 font-psemibold">
             Lets Sign you in
           </Text>
