@@ -117,7 +117,7 @@ const SignUp = () => {
             placeholder="Email"
             value={email}
             handleChangeText={(e) => onEmailChange(e)}
-            otherStyles="mt-7"
+            otherStyles="mt-4"
             keyboardType="email-address"
             errorMessage={emailError}
           />
@@ -127,14 +127,14 @@ const SignUp = () => {
             value={password}
             handleChangeText={(e) => onPasswordChange(e)}
             isPassword={true}
-            otherStyles="mt-7"
+            otherStyles="mt-4"
             errorMessage={passwordError}
           />
 
           <CustomButton
             title="Create Account"
             handlePress={submit}
-            containerStyles="mt-7"
+            containerStyles="mt-4"
             isLoading={isSubmitting}
           />
 

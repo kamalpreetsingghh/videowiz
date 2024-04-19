@@ -106,14 +106,14 @@ const SignIn = () => {
             value={password}
             handleChangeText={(e) => onPasswordChange(e)}
             isPassword={true}
-            otherStyles="mt-7"
+            otherStyles="mt-4"
             errorMessage={passwordError}
           />
 
           <CustomButton
             title="Sign In"
             handlePress={submit}
-            containerStyles="mt-7"
+            containerStyles="mt-4"
             isLoading={isSubmitting}
           />
 

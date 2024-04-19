@@ -10,7 +10,7 @@ const SearchField = ({ initialQuery }) => {
 
   return (
     <View
-      className="flex flex-row items-center space-x-4 w-full h-16 px-4 
+      className="flex flex-row items-center space-x-4 w-full h-14 px-4 
      bg-container-light dark:bg-container-dark rounded-full"
     >
       <TextInput

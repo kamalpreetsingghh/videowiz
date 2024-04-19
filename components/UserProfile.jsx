@@ -29,7 +29,9 @@ const UserProfile = () => {
         <FlatList
           data={posts}
           keyExtractor={(item) => item.$id}
-          renderItem={({ item }) => <VideoCard video={item} />}
+          renderItem={({ item }) => (
+            <VideoCard video={item} user={user} isProfileScreen={true} />
+          )}
           ListHeaderComponent={() => (
             <View className="w-full flex justify-center items-center mt-6 mb-12 px-4">
               <TouchableOpacity

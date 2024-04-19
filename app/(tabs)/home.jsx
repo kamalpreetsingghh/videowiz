@@ -34,16 +34,16 @@ const Home = () => {
         <FlatList
           data={posts}
           keyExtractor={(item) => item.$id}
-          renderItem={({ item }) => <VideoCard video={item} />}
+          renderItem={({ item }) => <VideoCard video={item} user={user} />}
           ListHeaderComponent={() => (
             <View className="flex my-6 px-4 space-y-6">
               <View className="flex justify-between items-start flex-row mb-6">
                 <View>
                   <Text className="font-pmedium text-sm text-surface-light dark:text-surface-dark">
-                    Welcome Back
+                    {user ? "Welcome Back" : "Hi There"}
                   </Text>
                   <Text className="text-2xl font-psemibold text-surface-light dark:text-surface-dark">
-                    {user?.name}
+                    {user ? user.name : "Welcom to VidWiz"}
                   </Text>
                 </View>
 
@@ -58,9 +58,9 @@ const Home = () => {
 
               <SearchField />
 
-              <View className="w-full flex-1 pt-5 pb-8">
+              <View className="w-full flex-1 pb-2">
                 <Text className="text-lg font-pregular text-surface-light dark:text-surface-dark mb-3">
-                  Latest Videos
+                  Trending Videos
                 </Text>
                 <Trending posts={latestPosts ?? []} />
               </View>

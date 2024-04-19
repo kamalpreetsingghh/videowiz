@@ -24,7 +24,7 @@ const FormField = ({
       )}
 
       <View
-        className="w-full h-14 px-4 bg-container-light dark:bg-container-dark rounded-full 
+        className="w-full h-14 px-4 mb-4 bg-container-light dark:bg-container-dark rounded-full 
        flex flex-row items-center"
       >
         <TextInput
@@ -48,7 +48,9 @@ const FormField = ({
         )}
       </View>
       {errorMessage && (
-        <Text className="text-red-600 pl-4">{errorMessage}</Text>
+        <Text className="text-red-600 pl-4 absolute bottom-0 left-0">
+          {errorMessage}
+        </Text>
       )}
     </View>
   );

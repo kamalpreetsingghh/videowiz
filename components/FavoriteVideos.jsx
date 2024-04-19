@@ -1,12 +1,14 @@
 import { FlatList } from "react-native";
-import { getLikedPosts } from "../lib/appwrite";
+import { getFavoritePosts } from "../lib/appwrite";
 import Loader from "./Loader";
 import VideoCard from "./VideoCard";
 import EmptyList from "./EmptyList";
 import useAppwrite from "../hooks/useAppwrite";
 
 const FavoriteVideos = ({ userId }) => {
-  const { data: posts, isLoading } = useAppwrite(() => getLikedPosts(userId));
+  const { data: posts, isLoading } = useAppwrite(() =>
+    getFavoritePosts(userId)
+  );
 
   return (
     <>
