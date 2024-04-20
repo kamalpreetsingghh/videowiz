@@ -159,7 +159,8 @@ const VideoForm = ({
 
   return (
     <ScrollView className="px-4">
-      <BackButton />
+      {formType === "Update" && <BackButton />}
+
       <Text className="mt-4 pl-2 text-2xl text-surface-light dark:text-surface-dark font-psemibold">
         {formType} Video
       </Text>
