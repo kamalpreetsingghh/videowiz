@@ -55,7 +55,7 @@ const VideoCard = ({
         video={video}
         user={user}
         isLoggedUserVideo={user ? user.$id === creatorId : false}
-        isProfileScreen
+        isProfileScreen={isProfileScreen}
         likedUsers={likedUsers}
       />
     </View>
