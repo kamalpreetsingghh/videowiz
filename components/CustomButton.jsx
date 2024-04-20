@@ -5,13 +5,14 @@ const CustomButton = ({
   handlePress,
   containerStyles,
   textStyles,
-  isLoading,
+  isLoading = false,
+  bgColorClass = "bg-secondary",
 }) => {
   return (
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.7}
-      className={`bg-secondary rounded-full min-h-[48px] flex flex-row justify-center items-center ${containerStyles} ${
+      className={`${bgColorClass} rounded-full min-h-[48px] flex flex-row justify-center items-center ${containerStyles} ${
         isLoading ? "opacity-50" : ""
       }`}
       disabled={isLoading}

@@ -3,21 +3,20 @@ import CustomButton from "./CustomButton";
 import { images } from "../constants";
 import { router } from "expo-router";
 
-const EmptyList = ({ title, subtitle }) => {
+const EmptyList = ({ title }) => {
   return (
-    <View className="flex justify-center items-center px-4">
-      <Image
-        source={images.empty}
-        resizeMode="contain"
-        className="w-[270px] h-[216px]"
-      />
+    <View className="flex flex-1 justify-between items-center px-4">
+      <View className="flex justify-center items-center">
+        <Image
+          source={images.logoSmall}
+          resizeMode="contain"
+          className="w-24 h-24"
+        />
 
-      <Text className="text-sm font-pmedium text-surface-light dark:text-surface-dark">
-        {title}
-      </Text>
-      <Text className="text-xl text-center font-psemibold text-surface-light dark:text-surface-dark mt-2">
-        {subtitle}
-      </Text>
+        <Text className=" my-4 font-pmedium text-surface-light dark:text-surface-dark">
+          {title}
+        </Text>
+      </View>
 
       <CustomButton
         title="Create Video"

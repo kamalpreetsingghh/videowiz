@@ -1,16 +1,17 @@
 import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { useState } from "react";
 import { icons } from "../constants";
-import { ResizeMode, Video } from "expo-av";
 import { updateFavorites } from "../lib/appwrite";
+import VideoPlayer from "./VideoPlayer";
 
 const VideoCard = ({
   video: {
-    $id,
+    $id: videoId,
     title,
+    prompt,
     thumbnail,
     video,
-    creator: { avatar, name },
+    creator: { $id: creatorId, avatar, name },
     likedUsers,
   },
   user,
@@ -35,14 +36,17 @@ const VideoCard = ({
       const updatedUsers = likedUsers.filter(
         (likedUser) => likedUser.$id !== user.$id
       );
-      await updateFavorites(updatedUsers, $id);
+      await updateFavorites(updatedUsers, videoId);
     } else {
       const updatedUsers = [...likedUsers, user];
-      await updateFavorites(updatedUsers, $id);
+      await updateFavorites(updatedUsers, videoId);
     }
   };
 
   const onDeleteClick = async () => {
+    console.log("Delete Function");
+    console.log(videoId);
+    console.log(creatorId);
     Alert.alert("Delete Video", "Are you sure you want to delete this video?", [
       {
         text: "Cancel",
@@ -51,7 +55,7 @@ const VideoCard = ({
       },
       {
         text: "Delete",
-        onPress: async () => await deletePost($id),
+        onPress: async () => await deletePost(videoId),
         style: "destructive",
       },
     ]);
@@ -114,38 +118,16 @@ const VideoCard = ({
         </View>
       </View>
 
-      {play ? (
-        <Video
-          source={{ uri: video }}
-          className="w-full h-60 rounded-xl mt-1"
-          resizeMode={ResizeMode.CONTAIN}
-          useNativeControls
-          shouldPlay
-          onPlaybackStatusUpdate={(status) => {
-            if (status.didJustFinish) {
-              setPlay(false);
-            }
-          }}
-        />
-      ) : (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => setPlay(true)}
-          className="w-full h-60 rounded-xl mt-1 relative flex justify-center items-center"
-        >
-          <Image
-            source={{ uri: thumbnail }}
-            className="w-full h-full rounded-xl mt-3"
-            resizeMode="cover"
-          />
-
-          <Image
-            source={icons.play}
-            className="w-12 h-12 absolute"
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      )}
+      <VideoPlayer
+        play={play}
+        setPlay={(value) => setPlay(value)}
+        videoId={videoId}
+        title={title}
+        prompt={prompt}
+        thumbnail={thumbnail}
+        video={video}
+        isLoggedUserVideo={user ? user.$id === creatorId : false}
+      />
     </View>
   );
 };

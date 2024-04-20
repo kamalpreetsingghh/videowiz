@@ -1,3 +1,4 @@
+import BackButton from "./BackButton";
 import VideoCard from "./VideoCard";
 import FormField from "./FormField";
 import CustomButton from "./CustomButton";
@@ -6,11 +7,12 @@ import Trending from "./Trending";
 import SearchField from "./SearchField";
 import EmptyList from "./EmptyList";
 import Loader from "./Loader";
-import CreatePost from "./CreatePost";
-import UserProfile from "./UserProfile";
+import VideoForm from "./VideoForm";
 import TabIcon from "./TabIcon";
+import VideoPlayer from "./VideoPlayer";
 
 export {
+  BackButton,
   VideoCard,
   FormField,
   CustomButton,
@@ -19,7 +21,7 @@ export {
   SearchField,
   EmptyList,
   Loader,
-  CreatePost,
-  UserProfile,
+  VideoForm,
   TabIcon,
+  VideoPlayer,
 };

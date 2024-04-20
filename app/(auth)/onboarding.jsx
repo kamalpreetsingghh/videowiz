@@ -9,7 +9,7 @@ const Onboarding = () => {
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <View className="w-full h-full justify-center items-center px-4">
-          <View className="justify-start w-full ">
+          <View className="justify-start w-full absolute top-0 left-0 mx-4 my-6">
             <TouchableOpacity
               onPress={() => router.navigate("/")}
               className="w-[35px] h-[35px] items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/50"
@@ -35,15 +35,14 @@ const Onboarding = () => {
 
           <View className="relative mt-5">
             <Text className="text-3xl text-surface-light dark:text-surface-dark font-bold text-center">
-              Discover Endless{"\n"}
-              Possibilities with{" "}
-              <Text className="text-secondary-200">VidWiz</Text>
+              Unlock Infinite{"\n"}
+              Creativity with <Text className="text-secondary-200">VidWiz</Text>
             </Text>
           </View>
 
           <Text className="text-sm font-pregular text-gray-light dark:text-gray-dark mt-7 text-center">
-            Where Creativity Meets Innovation: Embark on a Journey of Limitless
-            Exploration with VidWiz
+            Explore, express, and share your stories, unlocking endless
+            possibilities in the world of video creation.
           </Text>
 
           <CustomButton
