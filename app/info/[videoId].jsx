@@ -1,5 +1,4 @@
 import { Text, ScrollView, View, Alert } from "react-native";
-import { useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackButton, CustomButton, VideoPlayer } from "../../components";
@@ -8,8 +7,6 @@ import { deletePost } from "../../lib/appwrite";
 const Info = () => {
   const { videoId, title, prompt, thumbnail, video, isLoggedUserVideo } =
     useLocalSearchParams();
-
-  const [play, setPlay] = useState(false);
 
   const onDeleteClick = async () => {
     Alert.alert("Delete Video", "Are you sure you want to delete this video?", [
@@ -34,8 +31,6 @@ const Info = () => {
         </View>
 
         <VideoPlayer
-          play={play}
-          setPlay={(value) => setPlay(value)}
           videoId={videoId}
           title={title}
           prompt={prompt}

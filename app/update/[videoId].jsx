@@ -1,11 +1,11 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useGlobalContext } from "../../context/GlobalProvider";
 import { VideoForm } from "../../components";
 import { useLocalSearchParams } from "expo-router";
 
 const Update = () => {
-  const { videoId, title, prompt, thumbnail, video } = useLocalSearchParams();
-  const { isLoading, isLoggedIn, user } = useGlobalContext();
+  const { user, videoId, title, prompt, thumbnail, video } =
+    useLocalSearchParams();
+
   return (
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       <VideoForm

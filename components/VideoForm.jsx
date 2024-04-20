@@ -14,6 +14,7 @@ import { icons } from "../constants";
 import * as ImagePicker from "expo-image-picker";
 import { createVideoPost, updateVideoPost } from "../lib/appwrite";
 import { router } from "expo-router";
+import BackButton from "./BackButton";
 
 const VideoForm = ({
   user,
@@ -158,6 +159,7 @@ const VideoForm = ({
 
   return (
     <ScrollView className="px-4">
+      <BackButton />
       <Text className="mt-4 pl-2 text-2xl text-surface-light dark:text-surface-dark font-psemibold">
         {formType} Video
       </Text>

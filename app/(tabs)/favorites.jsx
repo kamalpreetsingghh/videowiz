@@ -8,10 +8,10 @@ import { EmptyList, Loader, VideoCard } from "../../components";
 import { useState } from "react";
 
 const Favorites = () => {
-  const { isLoggedIn, user } = useGlobalContext();
+  const { user, isLoggedIn, isLoading } = useGlobalContext();
   const {
     data: posts,
-    isLoading,
+    isLoading: isFavoritesLoading,
     refetch,
   } = useAppwrite(() => getFavoritePosts(user.$id));
 
@@ -23,12 +23,12 @@ const Favorites = () => {
     setRefreshing(false);
   };
 
-  if (!isLoggedIn) return <Redirect href="/onboarding" />;
+  if (!isLoggedIn && !isLoading) return <Redirect href="/onboarding" />;
 
   return (
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
       <>
-        {isLoading ? (
+        {isFavoritesLoading || isLoading ? (
           <Loader />
         ) : (
           <FlatList

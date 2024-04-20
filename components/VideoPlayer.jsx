@@ -14,8 +14,9 @@ const VideoPlayer = ({
   showInfo = true,
   user = null,
   isLoggedUserVideo = false,
-  isProfileScreen,
-  likedUsers,
+  isProfileScreen = false,
+  likedUsers = [],
+  onRefresh,
 }) => {
   const [play, setPlay] = useState(false);
 
@@ -52,6 +53,7 @@ const VideoPlayer = ({
     router.push({
       pathname: `/info/${videoId}`,
       params: {
+        user,
         title,
         prompt,
         thumbnail,
@@ -70,7 +72,10 @@ const VideoPlayer = ({
       },
       {
         text: "Delete",
-        onPress: async () => await deletePost(videoId),
+        onPress: async () => {
+          await deletePost(videoId);
+          onRefresh();
+        },
         style: "destructive",
       },
     ]);

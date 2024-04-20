@@ -13,6 +13,7 @@ const VideoCard = ({
   },
   user,
   isProfileScreen = false,
+  onRefresh,
 }) => {
   return (
     <View className="flex flex-col items-center px-4 mb-10">
@@ -57,6 +58,7 @@ const VideoCard = ({
         isLoggedUserVideo={user ? user.$id === creatorId : false}
         isProfileScreen={isProfileScreen}
         likedUsers={likedUsers}
+        onRefresh={onRefresh}
       />
     </View>
   );

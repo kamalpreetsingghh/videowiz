@@ -15,10 +15,11 @@ import { icons } from "../../constants";
 import { useState } from "react";
 
 const Profile = () => {
-  const { user, setUser, setIsLoggedIn, isLoggedIn } = useGlobalContext();
+  const { user, isLoggedIn, isLoading, setUser, setIsLoggedIn } =
+    useGlobalContext();
   const {
     data: posts,
-    isLoading,
+    isLoading: isProfileLoading,
     refetch,
   } = useAppwrite(() => getUserPosts(user.$id));
 
@@ -38,18 +39,23 @@ const Profile = () => {
     router.replace("/sign-in");
   };
 
-  if (!isLoggedIn) return <Redirect href="/onboarding" />;
+  if (!isLoggedIn && !isLoading) return <Redirect href="/onboarding" />;
 
   return (
     <SafeAreaView className="bg-primary-light dark:bg-primary-dark h-full">
-      {isLoading ? (
+      {isProfileLoading || isLoading ? (
         <Loader />
       ) : (
         <FlatList
           data={posts}
           keyExtractor={(item) => item.$id}
           renderItem={({ item }) => (
-            <VideoCard video={item} user={user} isProfileScreen={true} />
+            <VideoCard
+              video={item}
+              user={user}
+              isProfileScreen={true}
+              onRefresh={onRefresh}
+            />
           )}
           ListHeaderComponent={() => (
             <View className="w-full flex justify-center items-center mt-6 mb-12 px-4">
