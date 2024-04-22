@@ -17,7 +17,10 @@ const Info = () => {
       },
       {
         text: "Delete",
-        onPress: async () => await deletePost(videoId),
+        onPress: async () => {
+          await deletePost(videoId);
+          router.back();
+        },
         style: "destructive",
       },
     ]);

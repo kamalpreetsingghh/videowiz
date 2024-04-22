@@ -87,6 +87,52 @@ const VideoForm = ({
     }
   };
 
+  const videoFormData = () => {
+    let videoPost = {};
+
+    if (isThumbnailUpdate && isVideoUpdate) {
+      videoPost = {
+        videoId,
+        title,
+        prompt,
+        video,
+        thumbnail,
+      };
+    }
+
+    if (isThumbnailUpdate) {
+      videoPost = {
+        videoId,
+        title,
+        prompt,
+        video: null,
+        thumbnail,
+      };
+    }
+
+    if (isVideoUpdate) {
+      videoPost = {
+        videoId,
+        title,
+        prompt,
+        video,
+        thumbnail: null,
+      };
+    }
+
+    if (!isThumbnailUpdate && !isVideoUpdate) {
+      videoPost = {
+        videoId,
+        title,
+        prompt,
+        video: null,
+        thumbnail: null,
+      };
+    }
+
+    return videoPost;
+  };
+
   const submit = async () => {
     if (!isValidForm()) {
       return;
@@ -101,21 +147,9 @@ const VideoForm = ({
         Alert.alert("Success", "Post uploaded successfully");
         router.push("/home");
       } else {
-        if (isThumbnailUpdate && isVideoUpdate) {
-          await updateVideoPost(videoId, title, prompt, video, thumbnail);
-        }
+        const videoPost = videoFormData();
 
-        if (isThumbnailUpdate) {
-          await updateVideoPost(videoId, title, prompt, null, thumbnail);
-        }
-
-        if (isVideoUpdate) {
-          await updateVideoPost(videoId, title, prompt, video, null);
-        }
-
-        if (!isThumbnailUpdate && !isVideoUpdate) {
-          await updateVideoPost(videoId, title, prompt, null, null);
-        }
+        await updateVideoPost(videoPost);
 
         Alert.alert("Success", "Post updated successfully");
         router.push("/home");
